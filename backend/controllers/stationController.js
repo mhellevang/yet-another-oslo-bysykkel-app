@@ -15,9 +15,12 @@ function getStationStatuses() {
     return axios.get('https://gbfs.urbansharing.com/oslobysykkel.no/station_status.json', config)
 }
 
-function createStationMap(stationStatuses) {
+function createStatusMap(stationStatuses) {
     return stationStatuses.data.data.stations.reduce((map, status) => {
+        // Remove duplicate id property
         const {station_id, ...statusWithoutId} = status
+        // Convert date from POSIX timestamp to JS date
+        statusWithoutId.last_reported = new Date(statusWithoutId.last_reported * 1000)
         map[status.station_id] = statusWithoutId
         return map;
     }, {});
@@ -36,8 +39,7 @@ async function getStations() {
             getStationStatuses()]
         );
 
-        const statusMap = createStationMap(stationStatuses);
-        return createStations(stationInformation, statusMap)
+        return createStations(stationInformation, createStatusMap(stationStatuses))
     } catch (error) {
         console.error(error.message, `url: ${error.config.url}`)
         throw new Error("Klarte ikke hente data fra eksternt API")
