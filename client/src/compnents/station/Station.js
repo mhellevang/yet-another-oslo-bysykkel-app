@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {Box, ButtonBase, Card, CardHeader, createStyles, Grid, makeStyles, Typography,} from '@material-ui/core';
+
 import {formatDistance, parseISO} from "date-fns";
 import {nb} from 'date-fns/locale'
 import {LocalParking} from "@material-ui/icons";
-import {Box, Card, CardHeader, createStyles, Grid, makeStyles, Typography,} from '@material-ui/core';
 import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
+import StationDetailsDialog from "./StationDetail";
+
 
 const useStyles = makeStyles((theme) =>
     createStyles({
@@ -49,44 +52,48 @@ const useStyles = makeStyles((theme) =>
 
 function Station(props) {
     const classes = useStyles();
+    const [open, setOpen] = useState(false);
     const station = props.station
 
+    const toggleOpen = () => {
+        setOpen((e) => !e);
+    };
 
     const {num_docks_available} = station.status;
     return (
         <>
             <Grid item xs={12}>
-                <Card className={classes.cardRoot}>
-                    <CardHeader title={`${station.name}`} subheader={`${station.address}`}/>
-                    <Box className={classes.reportedText}>
-                        <Typography variant="caption" color="textSecondary">
-                            Sist oppdatert: {formatDate(station.status.last_reported)}
-                        </Typography>
-                    </Box>
-                    <Grid container spacing={1}>
-                        <Grid item sm={2} xs={4}>
-                            <Box className={classes.availableDockingsText}>
-                                <Typography noWrap={true} variant="body1" color="textPrimary">
-                                    <DirectionsBikeIcon color="primary" style={{
-                                        position: 'relative',
-                                        top: '8px',
-                                        marginRight: '5px'
-                                    }}/>
-                                    {station.status.num_bikes_available} {station.status.num_bikes_available === 1 ? 'sykkel' : 'sykler'}
-                                </Typography>
-                            </Box>
+                <ButtonBase className={classes.buttonRoot} onClick={toggleOpen}>
+                    <Card className={classes.cardRoot} onClick={() => {
+                    }}>
+                        <CardHeader title={`${station.name}`} subheader={`${station.address}`}/>
+                        <Box className={classes.reportedText}>
+                            <Typography variant="caption" color="textSecondary">
+                                Sist oppdatert: {formatDate(station.status.last_reported)}
+                            </Typography>
+                        </Box>
+                        <Grid container spacing={1 }>
+                            <Grid item sm={2} xs={4}>
+                                <Box className={classes.availableDockingsText}>
+                                    <Typography  variant="body1" color="textPrimary">
+                                        <DirectionsBikeIcon color="primary" style={{position: 'relative', top: '5px', marginRight: '5px'}} />
+                                        {station.status.num_bikes_available} {station.status.num_bikes_available === 1 ? 'sykkel' : 'sykler'}
+                                    </Typography>
+                                </Box>
+                            </Grid>
+                            <Grid item sm={2} xs={4}>
+                                <Box className={classes.availableDockingsText}>
+                                    <Typography variant="body1" color="textPrimary">
+                                        <LocalParking color="primary" style={{position: 'relative', top: 'px'}} />
+                                        {num_docks_available} {station.status.num_docks_available === 1 ? 'tilgjengelig' : 'tilgjengelige'}
+                                    </Typography>
+                                </Box>
+                            </Grid>
                         </Grid>
-                        <Grid item sm={2} xs={4}>
-                            <Box className={classes.availableDockingsText}>
-                                <Typography noWrap={true} variant="body1" color="textPrimary">
-                                    <LocalParking color="primary" style={{position: 'relative', top: '8px'}}/>
-                                    {num_docks_available} {station.status.num_docks_available === 1 ? 'tilgjengelig' : 'tilgjengelige'}
-                                </Typography>
-                            </Box>
-                        </Grid>
-                    </Grid>
-                </Card>
+                    </Card>
+                </ButtonBase>
             </Grid>
+            {open && <StationDetailsDialog station={station} closeDialog={toggleOpen}/>}
         </>
     );
 }
