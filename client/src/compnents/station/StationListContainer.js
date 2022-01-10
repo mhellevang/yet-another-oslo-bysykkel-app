@@ -5,10 +5,6 @@ import Alert from '@material-ui/lab/Alert';
 import StationList from "./StationList";
 
 function StationListContainer() {
-    return <Box pb={12}><StationListPage/></Box>;
-}
-
-function StationListPage() {
     let [data, setData] = useState([])
     let [isLoaded, setIsLoaded] = useState(false);
     let [error, setError] = useState(null);
@@ -42,8 +38,7 @@ function StationListPage() {
         return <Alert severity="warning">{error}</Alert>
     }
 
-    return <StationList stations={data ?? []}/>;
+    return <Box pb={12}><StationList stations={data ?? []}/></Box>;
 }
-
 
 export default StationListContainer;
