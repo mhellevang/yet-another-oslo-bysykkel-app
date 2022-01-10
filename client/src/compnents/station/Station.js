@@ -84,7 +84,7 @@ function Station(props) {
                             <Grid item sm={2} xs={4}>
                                 <Box className={classes.availableDockingsText}>
                                     <Typography variant="body1" color="textPrimary">
-                                        <LocalParking color="primary" style={{position: 'relative', top: 'px'}} />
+                                        <LocalParking color="primary" style={{position: 'relative', top: '5px'}} />
                                         {num_docks_available} {station.status.num_docks_available === 1 ? 'tilgjengelig' : 'tilgjengelige'}
                                     </Typography>
                                 </Box>
