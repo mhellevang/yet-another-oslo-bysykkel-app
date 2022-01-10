@@ -59,7 +59,6 @@ function Station(props) {
         setOpen((e) => !e);
     };
 
-    const {num_docks_available} = station.status;
     return (
         <>
             <Grid item xs={12}>
@@ -68,14 +67,14 @@ function Station(props) {
                     }}>
                         <CardHeader title={`${station.name}`} subheader={`${station.address}`}/>
                         <Box className={classes.reportedText}>
-                            <Typography variant="caption" color="textSecondary">
+                            <Typography component={'span'} variant="caption" color="textSecondary">
                                 Sist oppdatert: {formatDate(station.status.last_reported)}
                             </Typography>
                         </Box>
-                        <Grid container spacing={1 }>
+                        <Grid container spacing={1}>
                             <Grid item sm={2} xs={4}>
                                 <Box className={classes.availableDockingsText}>
-                                    <Typography  variant="body1" color="textPrimary">
+                                    <Typography component={'span'} variant="body1" color="textPrimary">
                                         <DirectionsBikeIcon color="primary" style={{position: 'relative', top: '5px', marginRight: '5px'}} />
                                         {station.status.num_bikes_available} {station.status.num_bikes_available === 1 ? 'sykkel' : 'sykler'}
                                     </Typography>
@@ -83,9 +82,9 @@ function Station(props) {
                             </Grid>
                             <Grid item sm={2} xs={4}>
                                 <Box className={classes.availableDockingsText}>
-                                    <Typography variant="body1" color="textPrimary">
+                                    <Typography component={'span'} variant="body1" color="textPrimary">
                                         <LocalParking color="primary" style={{position: 'relative', top: '5px'}} />
-                                        {num_docks_available} {station.status.num_docks_available === 1 ? 'tilgjengelig' : 'tilgjengelige'}
+                                        {station.status.num_docks_available} {station.status.num_docks_available === 1 ? 'tilgjengelig' : 'tilgjengelige'}
                                     </Typography>
                                 </Box>
                             </Grid>

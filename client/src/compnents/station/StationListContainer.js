@@ -5,9 +5,9 @@ import Alert from '@material-ui/lab/Alert';
 import StationList from "./StationList";
 
 function StationListContainer() {
-    let [data, setData] = useState([])
-    let [isLoaded, setIsLoaded] = useState(false);
-    let [error, setError] = useState(null);
+    const [data, setData] = useState([])
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         fetch('/stations')
