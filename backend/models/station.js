@@ -3,6 +3,8 @@ function Station(station, status) {
     this.name = station.name;
     this.address = station.address
     this.capacity = station.capacity;
+    this.lat = station.lat
+    this.lon = station.lon
     this.status = status
 }
 
