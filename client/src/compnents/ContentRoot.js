@@ -14,7 +14,7 @@ function ContentRoot() {
   const classes = useStyles();
 
   return (
-      <Container maxWidth="md" className={classes.container}>
+      <Container maxWidth="xl" className={classes.container}>
         <Grid container spacing={3}>
           <Grid item sm={12} xs={12}>
               <StationListContainer />

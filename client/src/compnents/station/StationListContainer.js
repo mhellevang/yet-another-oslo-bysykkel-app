@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import {Box} from '@material-ui/core';
+import {Box, Grid} from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import StationList from "./StationList";
+import StationMap from "./map/StationMap";
 
 function StationListContainer() {
     const [data, setData] = useState([])
@@ -38,7 +39,16 @@ function StationListContainer() {
         return <Alert severity="warning">{error}</Alert>
     }
 
-    return <Box pb={12}><StationList stations={data ?? []}/></Box>;
+    return (
+        <Grid container spacing={3}>
+            <Grid item sm={12} xs={12}>
+                <StationMap stations={data ?? []}></StationMap>
+            </Grid>
+            <Grid item sm={12} xs={12}>
+                <StationList stations={data ?? []}/>
+            </Grid>
+        </Grid>
+    )
 }
 
-export default StationListContainer;
+export default StationListContainer
