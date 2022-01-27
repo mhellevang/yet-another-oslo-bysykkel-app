@@ -14,7 +14,7 @@ import NotInterestedIcon from '@material-ui/icons/NotInterested';
 import DirectionsBikeIcon from "@material-ui/icons/DirectionsBike";
 import {LocalParking} from "@material-ui/icons";
 
-function StationDetailsDialog(props) {
+function StationDetails(props) {
     const station = props.station;
     const isRenting = station.status.is_renting === 1;
 
@@ -31,7 +31,7 @@ function StationDetailsDialog(props) {
                 {station.name}
             </DialogTitle>
             <DialogContent>
-                <DialogContentText id="station-details-description">
+                <DialogContentText id="station-details-description" component={'div'}>
                     <Typography component={'span'} variant="body1">{station.address}</Typography>
                     <Box marginTop={2}>
                         <Typography component={'span'} variant="body1" color="textPrimary">
@@ -77,4 +77,4 @@ function StationDetailsDialog(props) {
     );
 }
 
-export default StationDetailsDialog
+export default StationDetails

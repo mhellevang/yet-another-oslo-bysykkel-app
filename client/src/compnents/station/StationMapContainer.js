@@ -2,10 +2,9 @@ import React, {useEffect, useState} from 'react';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import {Box, Grid} from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
-import StationList from "./StationList";
-import StationMap from "./map/StationMap";
+import StationMap from "./StationMap";
 
-function StationListContainer() {
+function StationMapContainer() {
     const [data, setData] = useState([])
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState(null);
@@ -44,11 +43,8 @@ function StationListContainer() {
             <Grid item sm={12} xs={12}>
                 <StationMap stations={data ?? []}></StationMap>
             </Grid>
-            <Grid item sm={12} xs={12}>
-                <StationList stations={data ?? []}/>
-            </Grid>
         </Grid>
     )
 }
 
-export default StationListContainer
+export default StationMapContainer
