@@ -5,7 +5,7 @@ import StationMapContainer from "./station/StationMapContainer";
 const useStyles = makeStyles((theme) =>
   createStyles({
     container: {
-      marginTop: theme.spacing(10),
+      marginTop: theme.spacing(3),
     },
   }),
 );

@@ -3,6 +3,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import {Box, Grid} from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import StationMap from "./StationMap";
+import StationList from "./StationList";
 
 function StationMapContainer() {
     const [data, setData] = useState([])
@@ -39,9 +40,13 @@ function StationMapContainer() {
     }
 
     return (
+
         <Grid container spacing={3}>
             <Grid item sm={12} xs={12}>
                 <StationMap stations={data ?? []}></StationMap>
+            </Grid>
+            <Grid item sm={12} xs={12}>
+                <StationList stations={data ?? []}/>
             </Grid>
         </Grid>
     )
