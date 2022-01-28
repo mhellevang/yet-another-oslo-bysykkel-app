@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container, createStyles, Grid, makeStyles} from '@material-ui/core';
-import StationMapContainer from "./station/StationMapContainer";
+import StationContainer from "./station/StationContainer";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -10,14 +10,14 @@ const useStyles = makeStyles((theme) =>
   }),
 );
 
-function ContentRoot() {
+function ContentRoot(props) {
   const classes = useStyles();
 
   return (
       <Container maxWidth="xl" className={classes.container}>
         <Grid container spacing={3}>
           <Grid item sm={12} xs={12}>
-              <StationMapContainer />
+              <StationContainer selectedTab={props.selectedTab} />
           </Grid>
         </Grid>
       </Container>

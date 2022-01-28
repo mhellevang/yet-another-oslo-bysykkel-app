@@ -5,7 +5,7 @@ import Alert from '@material-ui/lab/Alert';
 import StationMap from "./StationMap";
 import StationList from "./StationList";
 
-function StationMapContainer() {
+function StationContainer(props) {
     const [data, setData] = useState([])
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState(null);
@@ -42,14 +42,14 @@ function StationMapContainer() {
     return (
 
         <Grid container spacing={3}>
-            <Grid item sm={12} xs={12}>
-                <StationMap stations={data ?? []}></StationMap>
-            </Grid>
-            <Grid item sm={12} xs={12}>
+            {props.selectedTab === 0 && <Grid item sm={12} xs={12}>
+                 <StationMap stations={data ?? []}></StationMap>
+            </Grid>}
+            {props.selectedTab === 1 && <Grid item sm={12} xs={12}>
                 <StationList stations={data ?? []}/>
-            </Grid>
+            </Grid>}
         </Grid>
     )
 }
 
-export default StationMapContainer
+export default StationContainer

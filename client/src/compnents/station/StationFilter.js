@@ -14,7 +14,6 @@ const useStyles = makeStyles(() =>
 function StationFilter(props) {
 
     const [filterValue, setFilterValue] = useState("");
-
     const classes = useStyles();
 
     const onSubmit = function (event) {

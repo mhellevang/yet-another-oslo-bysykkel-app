@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {sortBy} from 'rambda';
 import {Box, Grid} from '@material-ui/core';
 import Station from "./Station";
@@ -6,13 +6,16 @@ import StationFilter from "./StationFilter";
 
 function StationList(props) {
 
-    const [stations, setStations] = useState(props.stations);
+    const [stations, setStations] = useState(() =>{
+        const stations = props.stations
+        return stations;
+    });
 
-    const updateSearchFilter = function (value) {
+    const updateSearchFilter = useCallback((value) => {
         setStations(props.stations.filter((it) => {
             return it.name.toLowerCase().includes(value.toLowerCase());
         }));
-    }
+    }, [props.stations])
 
     return (
         <Grid container spacing={2}>
