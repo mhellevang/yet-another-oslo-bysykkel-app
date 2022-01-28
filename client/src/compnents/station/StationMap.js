@@ -8,7 +8,7 @@ import LocateUser from "./LocateUser";
 const useStyles = makeStyles((theme) =>
     createStyles({
         mapContainer: {
-            height: "80vh"
+            height: 'calc(100vh - 100px)'
         },
     }),
 );
