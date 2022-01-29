@@ -3,7 +3,8 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import {Box, Grid} from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import StationMap from "./StationMap";
-import StationList from "./StationList";
+import {sortBy} from "rambda";
+import EndlessLoadingStationList from "./EndlessLoadingStationList";
 
 function StationContainer(props) {
     const [data, setData] = useState([])
@@ -19,7 +20,7 @@ function StationContainer(props) {
                 return response.json()
             })
             .then(data => {
-                setData(data);
+                setData(sortBy((it) => it.name ?? '', data));
                 setIsLoaded(true);
             }).catch(error => {
             setError("Oopps! Noe gikk galt ved henting av stasjonsdata. Vi er på saken!");
@@ -43,10 +44,10 @@ function StationContainer(props) {
 
         <Grid container spacing={3}>
             {props.selectedTab === 0 && <Grid item sm={12} xs={12}>
-                 <StationMap stations={data ?? []}></StationMap>
+                <StationMap stations={data ?? []}></StationMap>
             </Grid>}
             {props.selectedTab === 1 && <Grid item sm={12} xs={12}>
-                <StationList stations={data ?? []}/>
+                <EndlessLoadingStationList stations={data ?? []}/>
             </Grid>}
         </Grid>
     )
