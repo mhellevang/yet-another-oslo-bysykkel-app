@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {Box, ButtonBase, Card, CardHeader, createStyles, Grid, makeStyles, Typography,} from '@material-ui/core';
-
 import {formatDistance, parseISO} from "date-fns";
 import {nb} from 'date-fns/locale'
 import {LocalParking} from "@material-ui/icons";
@@ -60,7 +59,7 @@ function Station(props) {
 
     return (
         <>
-            <Grid item xs={12}>
+            <Grid item xs={12} data-testid="station">
                 <ButtonBase className={classes.buttonRoot} onClick={toggleOpen}>
                     <Card className={classes.cardRoot} onClick={() => {
                     }}>
