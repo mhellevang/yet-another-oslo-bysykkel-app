@@ -10,8 +10,6 @@ function EndlessLoadingStationList(props) {
     const [currentPage, setCurrentPage] = useState(1);
     const [pageSize, setPageSize] = useState(25)
 
-    const numPages = Math.abs(props.stations.length / pageSize)
-
     const addPage = () => setCurrentPage((p) => p + 1);
 
     const updateSearchFilter = useCallback((value) => {
@@ -21,13 +19,8 @@ function EndlessLoadingStationList(props) {
         setPageSize(Math.max(25, stations.length));
     }, [props.stations])
 
-    console.log(currentPage)
-
     const handleOnBottom = () => {
-        console.log("hello")
-        if (currentPage < numPages) {
-            addPage();
-        }
+        addPage();
     };
 
     useBottomScrollListener(handleOnBottom, { debounce: 500 , offset: 300});
@@ -57,9 +50,7 @@ function StationList(props) {
     function slicePage() {
         const start = page * pageSize;
         const end = (page+1) * pageSize;
-
-        const slice = stations.slice(start, end)
-        return slice
+        return stations.slice(start, end)
     }
 
     return (
