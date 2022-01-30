@@ -1,23 +1,23 @@
 import React from 'react';
-import {Container, createStyles, Grid, makeStyles, Typography} from '@material-ui/core';
-import StationListContainer from "./station/StationListContainer";
+import {Container, createStyles, Grid, makeStyles} from '@material-ui/core';
+import StationContainer from "./station/StationContainer";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     container: {
-      marginTop: theme.spacing(12),
+      marginTop: theme.spacing(3),
     },
   }),
 );
 
-function ContentRoot() {
+function ContentRoot(props) {
   const classes = useStyles();
 
   return (
-      <Container maxWidth="md" className={classes.container}>
+      <Container maxWidth="xl" className={classes.container}>
         <Grid container spacing={3}>
           <Grid item sm={12} xs={12}>
-              <StationListContainer />
+              <StationContainer selectedTab={props.selectedTab} />
           </Grid>
         </Grid>
       </Container>
