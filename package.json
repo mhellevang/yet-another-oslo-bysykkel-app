@@ -4,7 +4,7 @@
   "description": "Enkle app for å se på sanntidsdata fra Oslo Bysykkel over GBFS",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cd client && npm test",
     "start": "concurrently \"cd backend && npm run start\" \"cd client && yarn start\"",
     "install-all-deps": "concurrently \"cd backend && npm install\" \"cd client && npm install\""
   },

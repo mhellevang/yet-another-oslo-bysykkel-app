@@ -10,4 +10,7 @@ Appen består av to deler, en backend skrevet i Node.js/Express som kommuniserer
 ## Start lokalt kjøremiljø
 ```npm run start```
 
+## Kjøre tester
+```npm test```
+
 Appen vil bli tilgjengelig på http://localhost:3000/?
