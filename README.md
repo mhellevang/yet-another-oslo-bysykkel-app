@@ -7,10 +7,10 @@ Appen består av to deler, en backend skrevet i Node.js/Express som kommuniserer
 ## Installer avhengigheter
 ```npm run install-all-deps```
 
-## Start lokalt kjøremiljø
-```npm run start```
-
 ## Kjøre tester
 ```npm test```
+
+## Start lokalt kjøremiljø
+```npm run start```
 
 Appen vil bli tilgjengelig på http://localhost:3000/?
